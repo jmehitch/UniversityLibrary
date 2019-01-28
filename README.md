@@ -1,12 +1,12 @@
 # University Library Frontend
 University library frontend created with library functionalities implemented that interact with local Node.js server (note - only frontend code shown in repository) 
 
-# Skills Learnt
+## Skills Learnt
 - Creating an interactive web app 
 - Using JavaScript to interface with a RESTful API 
 - Using HTTP requests to send, receive and edit data on a server 
 
-# Library Functionalities Implemented
+## Library Functionalities Implemented
 - U1 - Add a new User to the Library system with the fields Name, Barcode and Member Type (Staff/Student).
 - U2 - Get a User’s details from the Library system by searching on Name or Barcode
 - U3 - Update a User’s Name or Member Type
