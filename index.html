@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="css/assets/normalise.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Quattrocento|Quattrocento+Sans" rel="stylesheet">
+    <script src="js/assets/moment.js"></script>
+    <script src="js/general.js"></script>
+    <script src="js/books.js"></script>
+    <script src="js/users.js"></script>
+    <script src="js/loans.js"></script>
+    <title>University of PontyBridge Library</title>
+</head>
+<body>
+<!-- Header -->
+<header class="header">
+    <h2><a href="index.html">University of PontyBridge Library</a></h2>
+</header>
+
+<!-- Main Section -->
+<div class="container">
+    <!-- Functions Click Boxes/Menus Section -->
+    <div class="functions-box">
+        <h4>Users:</h4>
+        <ul class="functions">
+            <li onclick="HideShow('addUserShow')">Add new user</li>
+            <li onclick="HideShow('searchUserShow')">Search for user</li>
+            <li onclick="HideShow('deleteUserShow')">Delete user by ID</li>
+            <li onclick="HideShow('getUserLoansShow')">Get user's current loans</li>
+        </ul>
+    </div>
+
+    <div class="functions-box">
+        <h4>Books:</h4>
+        <ul class="functions">
+            <li onclick="HideShow('addNewBookShow')">Add new book</li>
+            <li onclick="HideShow('searchBookShow')">Search for book</li>
+            <li onclick="HideShow('deleteBookShow')">Delete book by ID</li>
+            <li onclick="HideShow('findBookAuthorShow')">Find books by an author</li>
+        </ul>
+    </div>
+
+    <div class="functions-box">
+        <h4>Authors:</h4>
+        <ul class="functions">
+            <li onclick="HideShow('addAuthorBookShow')">Add author to book</li>
+            <li onclick="HideShow('searchAuthorShow')">Search for author</li>
+            <li onclick="HideShow('deleteAuthorShow')">Delete author by ID</li>
+        </ul>
+    </div>
+
+    <div class="functions-box" id="lastBox">
+        <h4>Loans:</h4>
+        <ul class="functions">
+            <li onclick="HideShow('loanBookUserShow')">Loan book to user</li>
+            <li onclick="HideShow('bookLoanUserShow')">Get user loaning a book</li>
+            <li onclick="HideShow('removeLoanShow')">Remove a loan</li>
+            <li onclick="HideShow('updateLoanShow')">Update a loan</li>
+        </ul>
+    </div>
+    <hr>
+
+
+    <!-- Users Functionality: -->
+    <div class="showArea" id="addUserShow">      
+        <h3>Add a new user:</h3>
+        <p>Add a new user to the system by filling in the following information:</p>
+        <input type="text" value="" placeholder="Name" id="addNewName">
+        <input type="text" value="" placeholder="Barcode" id="addNewBarcode">
+        <select id="newMemberType">
+            <option value="Staff">Staff</option>
+            <option value="Student">Student</option>
+        </select>
+        <input type="button" value="submit" id="addNewSubmit">
+    </div> 
+    
+    <div class="showArea" id="searchUserShow">      
+        <h3>Search for a user:</h3>
+        <p>Search for a user by any of the following parameters:</p>
+        <input type="text" value="" placeholder="Search by name" id="nameSearch"> 
+        <input type="text" value="" placeholder="Search by ID" id="idSearch">
+        <input type="text" value="" placeholder="Search by barcode" id="barcodeSearch">
+        <input type="button" value="search" id="userSearchButton">
+        
+    </div>
+
+    <div class="showArea" id="deleteUserShow">      
+        <h3>Delete a user by ID:</h3>
+        <p>Delete a user from the library system by typing in their ID:</p>
+        <input type="text" value="" placeholder="ID of user to be deleted" id="deleteUserId">
+        <input type="button" value="delete" id="deleteUserButton">
+    </div> 
+
+    <div class="showArea" id="getUserLoansShow">      
+        <h3>Get a list of a user's current loans:</h3>
+        <p>Find the books a user currently has on loan by typing the user ID:</p>
+        <input type="text" value="" placeholder="User ID" id="userIdLoan">
+        <input type="button" value="submit" id="getLoansSubmit">
+        <ul id="userLoansList">
+        </ul>
+    </div> 
+    
+
+    <!-- Books Functionality: -->
+    <div class="showArea" id="addNewBookShow">
+        <h3>Add a new book:</h3>
+        <p>Add a new book to the library by filling in the following information:</p>
+        <input class="input" type="text" value="" placeholder="Title" id="addTitle">
+        <input class="input" type="text" value="" placeholder="ISBN" id="addIsbn">
+        <input class="input" type="text" value="" placeholder="Author" id="addAuthor">
+        <input class="input" type="button" value="submit" id="newSubmit">
+    </div>
+    <div class="showArea" id="searchBookShow">      
+        <h3>Search for a book:</h3>
+        <p>Find a book by searching by any of the following parameters:</p>
+        <input type="text" value="" placeholder="Search by Title" id="titleSearch">
+        <input type="text" value="" placeholder="Search by Book ID" id="idBookSearch">
+        <input type="text" value="" placeholder="Search by ISBN" id="isbnSearch">
+        <input type="button" value="search" id="searchBook">
+    </div>
+
+    <div class="showArea" id="deleteBookShow">      
+        <h3>Delete a book by ID:</h3>
+        <p>Remove a book from the library system by ID:</p>
+        <input type="text" value="" placeholder="ID of book to be deleted" id="deleteBookId">
+        <input type="button" value="delete" id="deleteBookButton">
+    </div> 
+
+    <div class="showArea" id="findBookAuthorShow">      
+        <h3>Find books written by an author:</h3>
+        <p>Search for books written by an author by name or ID:</p>
+        <input type="text" value="" placeholder="Search by Author Name" id="authorBookSearch">
+        <input type="text" value="" placeholder="Search by Author ID" id="authorIdBookSearch">
+        <input type="button" value="search" id="searchAuthorBook">
+        <ul id="authorBooksSearchList">
+        </ul>
+    </div> 
+
+    <!-- Authors Functionality -->
+    <div class="showArea" id="addAuthorBookShow">
+        <h3>Add an author to a book:</h3>
+        <p>Add an author to a book by typing author's name (new or existing) or an author ID with associted book ID:</p>
+        <input type="text" value="" placeholder="Author Name" id="addAnotherAuthor">
+        <input type="text" value="" placeholder="Author ID" id="idAddAuthor">
+        <input type="text" value="" placeholder="Book ID" id="idBook">
+        <input type="button" value="submit" id="authorSubmit">
+    </div> 
+    <div class="showArea" id="searchAuthorShow">      
+        <h3>Search for author:</h3>
+        <p>Get an author's details by searching by one of the following parameters:</p>
+        <input type="text" value="" placeholder="Search by Author Name" id="authorSearch">
+        <input type="text" value="" placeholder="Search by Author ID" id="authorIdSearch">
+        <input type="button" value="search" id="searchAuthor">
+        <ul id="authorSearchList">
+        </ul>
+    </div>
+    <div class="showArea" id="deleteAuthorShow">      
+        <h3>Delete an author by ID:</h3>
+        <p>Delete an author from the system by typing in their author ID below: </p>
+        <input type="text" value="" placeholder="ID of author to be deleted" id="delAuthId">
+        <input type="button" value="delete" id="deleteAuthorButton">
+    </div> 
+
+    <!-- Loans Functionality -->
+    <div class="showArea" id="loanBookUserShow">
+        <h3>Loan a book to a user:</h3>
+        <p>Loan a book to a user by user ID, book ID and assigning a due date:</p>
+        <input type="text" value="" placeholder="User ID" id="userIdToLoan">
+        <input type="text" value="" placeholder="Book ID" id="bookIdToLoan">
+        <input type="text" value="" placeholder="Due Date (DD/MM/YY)" id="dueDate">
+            <input type="button" value="submit" id="loanSubmit">
+    </div> 
+    <div class="showArea" id="bookLoanUserShow">
+        <h3>Get user currently loaning a book:</h3>
+        <p>Find the user who currently has a specific book on loan by searching by the book ID:</p>
+        <input type="text" value="" placeholder="Book ID" id="bookLoanId">
+        <input type="button" value="search" id="bookLoanSearch">
+        <ul id="bookLoanList">
+        </ul>
+    </div> 
+    <div class="showArea" id="removeLoanShow">
+        <h3>Remove a current loan:</h3>
+        <p>Remove a loan from a book by book ID:</p>
+        <input type="text" value="" placeholder="Book ID" id="bookIdRemoveLoan">
+        <input type="button" value="submit" id="loanRemoveSubmit">
+    </div>
+    <div class="showArea" id="updateLoanShow">
+        <h3>Update a current loan:</h3>
+        <p>Update a loan's due date by the book ID and new due date:</p>
+        <input type="text" value="" placeholder="Book ID" id="bookIdUpdateLoan">
+        <input type="text" value="" placeholder="Due Date (DD/MM/YY)" id="updatedDueDate">
+        <input type="button" value="submit" id="loanUpdateSubmit">
+    </div>
+
+
+    <!-- Displaying Results -->
+    <div id="start"><p>Click a function to get started.</p></div>
+    <hr>
+    <!-- Results output goes here -->
+    <div id="editArea"></div>
+    <ul id="displayList"></ul>
+    <ul id="searchList"></ul>
+        
+    
+    <!-- Tables Section-->
+    <div style="overflow-x:auto;">
+        <h4 class="tableHead">Books:</h4>
+        <table class="table" id="booksTableContainer">
+            <!-- Table output goes here -->
+        </table>
+    </div>
+      
+    <div style="overflow-x:auto;">
+        <h4 class="tableHead">Users:</h4>
+        <table class="table" id="usersTableContainer">
+            <!-- Table output goes here -->
+        </table> 
+    </div>
+</div>
+</body>
+</html>
